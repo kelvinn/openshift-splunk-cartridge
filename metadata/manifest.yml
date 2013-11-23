@@ -1,5 +1,5 @@
-Name: diy
-Cartridge-Short-Name: DIY
+Name: diy-extra-ports
+Cartridge-Short-Name: DIY-EXTRA-PORTS
 Display-Name: Do-It-Yourself 0.1 Extra Ports
 Description: "The extra-port Do-It-Yourself (DIY) application type is a blank slate for trying unsupported languages, frameworks, and middleware on OpenShift. This extension of the standard DIY cartridge exposes an extra port in addition to the one used for web access, which can be used for any protocol. Extension from sosiouxme."
 Version: '0.1'
