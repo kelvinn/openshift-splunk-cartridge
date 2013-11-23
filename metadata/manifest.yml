@@ -16,19 +16,19 @@ Categories:
 Help-Topics:
   "Getting Started": https://www.openshift.com/community/videos/getting-started-with-diy-applications-on-openshift
 Cart-Data:
-  - Key: OPENSHIFT_DIYEXTRA_EXTRA_IP
+  - Key: OPENSHIFT_SPLUNK_IP
     Type: environment
     Description: "Internal IP to which Splunk binds to."
-  - Key: OPENSHIFT_DIYEXTRA_EXTRA_PORT
+  - Key: OPENSHIFT_SPLUNK_PORT
     Type: environment
     Description: "Internal port for Splunk Web to bind to."
-  - Key: OPENSHIFT_DIYEXTRA_EXTRA_PROXY_PORT
+  - Key: OPENSHIFT_SPLUNK_PROXY_PORT
     Type: environment
     Description: "External node port to reach Splunk Web."
-  - Key: OPENSHIFT_DIYEXTRA_MGMT_PROXY_PORT
+  - Key: OPENSHIFT_SPLUNK_MGMT_PROXY_PORT
     Type: environment
     Description: "External node port to reach Splunkd."
-  - Key: OPENSHIFT_DIYEXTRA_MGMT_PORT
+  - Key: OPENSHIFT_SPLUNK_MGMT_PORT
     Type: environment
     Description: "Internal port for Splunkd to bind to."
 Provides:
@@ -53,9 +53,9 @@ Group-Overrides:
     - web-proxy
 Endpoints:
   - Private-IP-Name:   IP
-    Private-Port-Name: EXTRA_PORT
+    Private-Port-Name: PORT
     Private-Port:      8008
-    Public-Port-Name:  EXTRA_PROXY_PORT
+    Public-Port-Name:  PROXY_PORT
   - Private-IP-Name:   IP
     Private-Port-Name: MGMT_PORT
     Private-Port:      8009
