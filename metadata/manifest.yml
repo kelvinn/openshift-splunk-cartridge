@@ -4,14 +4,16 @@ Display-Name: Do-It-Yourself 0.1 Extra Ports
 Description: "The extra-port Do-It-Yourself (DIY) application type is a blank slate for trying unsupported languages, frameworks, and middleware on OpenShift. This extension of the standard DIY cartridge exposes an extra port in addition to the one used for web access, which can be used for any protocol. Extension from sosiouxme."
 Version: '0.1'
 License: "ASL 2.0"
+
 License-Url: http://www.apache.org/licenses/LICENSE-2.0.txt
 Cartridge-Version: 0.0.2
 Cartridge-Vendor: kelvinn
 Vendor: kelvinn
 Categories:
-  - web_framework
+  - embedded
   - experimental
-Website:
+Website: https://github.com/kelvinn/diy-extra-port-cartridge
+Source-Url: https://github.com/kelvinn/diy-extra-port-cartridge.git
 Help-Topics:
   "Getting Started": https://www.openshift.com/community/videos/getting-started-with-diy-applications-on-openshift
 Cart-Data:
