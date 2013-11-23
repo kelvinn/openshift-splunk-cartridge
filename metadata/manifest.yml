@@ -1,37 +1,37 @@
-Name: diy-extra-ports
-Cartridge-Short-Name: DIYEXTRA
-Display-Name: Do-It-Yourself 0.1 Extra Ports
-Description: "The extra-port Do-It-Yourself (DIY) application type is a blank slate for trying unsupported languages, frameworks, and middleware on OpenShift. This extension of the standard DIY cartridge exposes an extra port in addition to the one used for web access, which can be used for any protocol. Extension from sosiouxme."
+Name: splunk
+Cartridge-Short-Name: SPLUNK
+Display-Name: Splunk 0.0.1
+Description: "The is based off the extra-port Do-It-Yourself (DIY) application type sosiouxme, but includes modifications to allow Splunk to run in a cartridge."
 Version: '0.1'
 License: "ASL 2.0"
 
 License-Url: http://www.apache.org/licenses/LICENSE-2.0.txt
-Cartridge-Version: 0.0.2
+Cartridge-Version: 0.0.1
 Cartridge-Vendor: kelvinn
 Vendor: kelvinn
 Categories:
   - service
   - embedded
-Website: https://github.com/kelvinn/diy-extra-port-cartridge
-Source-Url: https://github.com/kelvinn/diy-extra-port-cartridge.git
 Help-Topics:
   "Getting Started": https://www.openshift.com/community/videos/getting-started-with-diy-applications-on-openshift
 Cart-Data:
-  - Key: OPENSHIFT_DIY_EXTRA_PORT
+  - Key: OPENSHIFT_DIYEXTRA_EXTRA_IP
     Type: environment
-    Description: "Internal port for something other than web-framework to bind to."
-  - Key: OPENSHIFT_DIY_EXTRA_PROXY_PORT
+    Description: "Internal IP to which Splunk binds to."
+  - Key: OPENSHIFT_DIYEXTRA_EXTRA_PORT
     Type: environment
-    Description: "External node port to reach non-web-framework port."
-  - Key: OPENSHIFT_DIY_MGMT_PROXY_PORT
+    Description: "Internal port for Splunk Web to bind to."
+  - Key: OPENSHIFT_DIYEXTRA_EXTRA_PROXY_PORT
     Type: environment
-    Description: "External node port to reach non-web-framework port."
-  - Key: OPENSHIFT_DIY_MGMT_PORT
+    Description: "External node port to reach Splunk Web."
+  - Key: OPENSHIFT_DIYEXTRA_MGMT_PROXY_PORT
     Type: environment
-    Description: "Internal port for something other than web-framework to bind to."
+    Description: "External node port to reach Splunkd."
+  - Key: OPENSHIFT_DIYEXTRA_MGMT_PORT
+    Type: environment
+    Description: "Internal port for Splunkd to bind to."
 Provides:
-  - diy-0.1-extra-ports
-  - diy-extra-ports
+  - splunk
 Publishes:
   publish-http-url:
     Type: "NET_TCP:httpd-proxy-info"
@@ -53,9 +53,9 @@ Group-Overrides:
 Endpoints:
   - Private-IP-Name:   IP
     Private-Port-Name: EXTRA_PORT
-    Private-Port:      15000
+    Private-Port:      8008
     Public-Port-Name:  EXTRA_PROXY_PORT
   - Private-IP-Name:   IP
     Private-Port-Name: MGMT_PORT
-    Private-Port:      15001
+    Private-Port:      8009
     Public-Port-Name:  MGMT_PROXY_PORT
