@@ -4,7 +4,6 @@ Display-Name: Splunk 0.0.1
 Description: "The is based off the extra-port Do-It-Yourself (DIY) application type sosiouxme, but includes modifications to allow Splunk to run in a cartridge."
 Version: '0.1'
 License: "ASL 2.0"
-
 License-Url: http://www.apache.org/licenses/LICENSE-2.0.txt
 Cartridge-Version: 0.0.1
 Cartridge-Vendor: kelvinn
@@ -49,6 +48,9 @@ Subscribes:
 Scaling:
   Min: 1
   Max: 1
+Group-Overrides:
+  - components:
+    - web-proxy
 Endpoints:
   - Private-IP-Name:   IP
     Private-Port-Name: EXTRA_PORT
