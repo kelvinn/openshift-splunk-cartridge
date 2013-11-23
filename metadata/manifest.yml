@@ -1,13 +1,13 @@
 Name: diy
 Cartridge-Short-Name: DIY
 Display-Name: Do-It-Yourself 0.1
-Description: "The extra-port Do-It-Yourself (DIY) application type is a blank slate for trying unsupported languages, frameworks, and middleware on OpenShift. This extension of the standard DIY cartridge exposes an extra port in addition to the one used for web access, which can be used for any protocol."
+Description: "The extra-port Do-It-Yourself (DIY) application type is a blank slate for trying unsupported languages, frameworks, and middleware on OpenShift. This extension of the standard DIY cartridge exposes an extra port in addition to the one used for web access, which can be used for any protocol. Extension from sosiouxme."
 Version: '0.1'
 License: "ASL 2.0"
 License-Url: http://www.apache.org/licenses/LICENSE-2.0.txt
-Cartridge-Version: 0.0.1
-Cartridge-Vendor: sosiouxme
-Vendor: sosiouxme
+Cartridge-Version: 0.0.2
+Cartridge-Vendor: kelvinn
+Vendor: kelvinn
 Categories:
   - web_framework
   - experimental
@@ -24,18 +24,18 @@ Cart-Data:
   - Key: OPENSHIFT_REPO_DIR
     Type: environemnt
     Description: "Application root directory where application files reside. This directory is reset every time you do a git-push"
-  - Key: OPENSHIFT_DIY_PORT
-    Type: environment
-    Description: "Internal port to which the web-framework binds to."
-  - Key: OPENSHIFT_DIY_IP
-    Type: environment
-    Description: "Internal IP to which the web-framework binds to."
   - Key: OPENSHIFT_DIY_EXTRA_PORT
     Type: environment
     Description: "Internal port for something other than web-framework to bind to."
   - Key: OPENSHIFT_DIY_EXTRA_PROXY_PORT
     Type: environment
     Description: "External node port to reach non-web-framework port."
+  - Key: OPENSHIFT_DIY_MGMT_PROXY_PORT
+    Type: environment
+    Description: "External node port to reach non-web-framework port."
+  - Key: OPENSHIFT_DIY_MGMT_PORT
+    Type: environment
+    Description: "Internal port for something other than web-framework to bind to."
   - Key: OPENSHIFT_APP_DNS
     Type: environment
     Description: "Fully qualified domain name for the application."
@@ -74,17 +74,10 @@ Group-Overrides:
     - web-proxy
 Endpoints:
   - Private-IP-Name:   IP
-    Private-Port-Name: PORT
-    Private-Port:      8080
-    Public-Port-Name:  PROXY_PORT
-    Mappings:
-      - Frontend:      ""
-        Backend:       ""
-        Options:       { websocket: true }
-      - Frontend:      "/health"
-        Backend:       ""
-        Options:       { health: true }
-  - Private-IP-Name:   IP
     Private-Port-Name: EXTRA_PORT
     Private-Port:      15000
     Public-Port-Name:  EXTRA_PROXY_PORT
+  - Private-IP-Name:   IP
+    Private-Port-Name: MGMT_PORT
+    Private-Port:      15001
+    Public-Port-Name:  MGMT_PROXY_PORT
