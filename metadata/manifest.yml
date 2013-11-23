@@ -9,6 +9,8 @@ License-Url: http://www.apache.org/licenses/LICENSE-2.0.txt
 Cartridge-Version: 0.0.1
 Cartridge-Vendor: kelvinn
 Vendor: kelvinn
+Website: https://github.com/kelvinn/diy-extra-port-cartridge
+Source-Url: https://github.com/kelvinn/diy-extra-port-cartridge.git
 Categories:
   - service
   - embedded
