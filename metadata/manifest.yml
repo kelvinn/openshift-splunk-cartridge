@@ -56,17 +56,6 @@ Scaling:
     - web-proxy
 Endpoints:
   - Private-IP-Name:   IP
-    Private-Port-Name: PORT
-    Private-Port:      8080
-    Public-Port-Name:  PROXY_PORT
-    Mappings:
-      - Frontend:      ""
-        Backend:       ""
-        Options:       { websocket: true }
-      - Frontend:      "/health"
-        Backend:       ""
-        Options:       { health: true }
-  - Private-IP-Name:   IP
     Private-Port-Name: EXTRA_PORT
     Private-Port:      8008
     Public-Port-Name:  EXTRA_PROXY_PORT
