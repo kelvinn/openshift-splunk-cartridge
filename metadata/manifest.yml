@@ -22,6 +22,9 @@ Cart-Data:
   - Key: OPENSHIFT_SPLUNK_PORT
     Type: environment
     Description: "Internal port for Splunk Web to bind to."
+  - Key: OPENSHIFT_SPLUNK_EXTRA_PORT
+    Type: environment
+    Description: "Internal port for Splunk Web to bind to."
   - Key: OPENSHIFT_SPLUNK_PROXY_PORT
     Type: environment
     Description: "External node port to reach Splunk Web."
