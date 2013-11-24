@@ -1,67 +1,59 @@
 Name: splunk
 Cartridge-Short-Name: SPLUNK
-Display-Name: Splunk 0.0.1
-Description: "The is based off the extra-port Do-It-Yourself (DIY) application type sosiouxme, but includes modifications to allow Splunk to run in a cartridge."
+Display-Name: Splunk Cartridge
+Description: "A Splunk cartridge"
 Version: '0.1'
-License: "ASL 2.0"
-License-Url: http://www.apache.org/licenses/LICENSE-2.0.txt
+License: "MIT"
+Vendor: kelvinn
 Cartridge-Version: 0.0.1
 Cartridge-Vendor: kelvinn
-Vendor: kelvinn
-Website: https://github.com/kelvinn/diy-extra-port-cartridge
-Source-Url: https://github.com/kelvinn/diy-extra-port-cartridge.git
 Categories:
   - service
-  - embedded
-Help-Topics:
-  "Getting Started": https://www.openshift.com/community/videos/getting-started-with-diy-applications-on-openshift
+  - web_framework
+Provides:
+  - splunk
+Scaling:
+  Min: 1
+  Max: -1
 Cart-Data:
-  - Key: OPENSHIFT_SPLUNK_IP
+  - Key: OPENSHIFT_SPLUNK_LOG_DIR
     Type: environment
-    Description: "Internal IP to which Splunk binds to."
+    Description: "Directory to store application log files."
+  - Key: OPENSHIFT_TMP_DIR
+    Type: environment
+    Description: "Directory to store application temporary files."
+  - Key: OPENSHIFT_REPO_DIR
+    Type: environment
   - Key: OPENSHIFT_SPLUNK_PORT
     Type: environment
-    Description: "Internal port for Splunk Web to bind to."
-  - Key: OPENSHIFT_SPLUNK_EXTRA_PORT
+    Description: "Internal port to which the web-framework binds to."
+  - Key: OPENSHIFT_SPLUNK_IP
     Type: environment
-    Description: "Internal port for Splunk Web to bind to."
-  - Key: OPENSHIFT_SPLUNK_EXTRA_PROXY_PORT
-    Type: environment
-    Description: "External node port to reach Splunk Web."
-  - Key: OPENSHIFT_SPLUNK_PROXY_PORT
-    Type: environment
-    Description: "External node port to reach Splunk Web."
-  - Key: OPENSHIFT_SPLUNK_MGMT_PROXY_PORT
-    Type: environment
-    Description: "External node port to reach Splunkd."
-  - Key: OPENSHIFT_SPLUNK_MGMT_PORT
-    Type: environment
-    Description: "Internal port for Splunkd to bind to."
-Provides:
-  - splunk-template
-Publishes:
-  publish-http-url:
-    Type: "NET_TCP:httpd-proxy-info"
-  publish-gear-endpoint:
-    Type: "NET_TCP:gear-endpoint-info"
+    Description: "Internal IP to which the web-framework binds to."
+Group-Overrides:
+  - components:
+    - SPLUNK
 Subscribes:
   set-db-connection-info:
     Type: "ENV:NET_TCP:db:connection-info"
     Required: false
-Scaling:
-  Min: 1
-  Max: 1
- Group-Overrides:
-  - components:
-    - web-proxy
+  set-nosql-db-connection-info:
+    Type: "ENV:NET_TCP:nosqldb:connection-info"
+    Required : false
 Endpoints:
   - Private-IP-Name:   IP
-    Private-Port-Name: EXTRA_PORT
-    Private-Port:      8008
-    Public-Port-Name:  EXTRA_PROXY_PORT
-    Options:           { "ssl_to_gear": true }
+    Private-Port-Name: PORT
+    Private-Port:      8080
+    Public-Port-Name:  PROXY_PORT
+    Mappings:
+      - Frontend:      ""
+        Backend:       ""
+        Options:       { websocket: true }
+      - Frontend:      "/health"
+        Backend:       ""
+        Options:       { health: true }
   - Private-IP-Name:   IP
-    Private-Port-Name: MGMT_PORT
-    Private-Port:      8009
-    Public-Port-Name:  MGMT_PROXY_PORT
+    Private-Port-Name: PORT_TCP
+    Private-Port:      8090
+    Public-Port-Name:  PROXY_PORT_TCP
     Options:           { "ssl_to_gear": true }
