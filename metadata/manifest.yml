@@ -32,7 +32,7 @@ Cart-Data:
     Type: environment
     Description: "Internal port for Splunkd to bind to."
 Provides:
-  - splunk
+  - splunk-template
 Publishes:
   publish-http-url:
     Type: "NET_TCP:httpd-proxy-info"
@@ -42,21 +42,23 @@ Subscribes:
   set-db-connection-info:
     Type: "ENV:NET_TCP:db:connection-info"
     Required: false
-  set-nosql-db-connection-info:
-    Type: "ENV:NET_TCP:nosqldb:connection-info"
-    Required: false
 Scaling:
   Min: 1
   Max: 1
-Group-Overrides:
-  - components:
-    - web-proxy
 Endpoints:
   - Private-IP-Name:   IP
     Private-Port-Name: PORT
     Private-Port:      8008
     Public-Port-Name:  PROXY_PORT
+    Mappings:
+      - Frontend:      ""
+        Backend:       ""
+        Options:       { websocket: true }
   - Private-IP-Name:   IP
     Private-Port-Name: MGMT_PORT
     Private-Port:      8009
     Public-Port-Name:  MGMT_PROXY_PORT
+    Mappings:
+      - Frontend:      ""
+        Backend:       ""
+        Options:       { websocket: true }
