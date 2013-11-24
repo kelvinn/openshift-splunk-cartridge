@@ -25,6 +25,9 @@ Cart-Data:
   - Key: OPENSHIFT_SPLUNK_EXTRA_PORT
     Type: environment
     Description: "Internal port for Splunk Web to bind to."
+  - Key: OPENSHIFT_SPLUNK_EXTRA_PROXY_PORT
+    Type: environment
+    Description: "External node port to reach Splunk Web."
   - Key: OPENSHIFT_SPLUNK_PROXY_PORT
     Type: environment
     Description: "External node port to reach Splunk Web."
@@ -66,7 +69,7 @@ Endpoints:
   - Private-IP-Name:   IP
     Private-Port-Name: EXTRA_PORT
     Private-Port:      8008
-    Public-Port-Name:  PROXY_PORT
+    Public-Port-Name:  EXTRA_PROXY_PORT
     Options:           { "ssl_to_gear": true }
   - Private-IP-Name:   IP
     Private-Port-Name: MGMT_PORT
