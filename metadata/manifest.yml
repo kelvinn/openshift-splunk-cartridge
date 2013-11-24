@@ -11,7 +11,6 @@ Website: https://github.com/kelvinn/diy-extra-port-cartridge
 Source-Url: https://github.com/kelvinn/diy-extra-port-cartridge.git
 Categories:
   - service
-  - web_framework
 Provides:
   - splunk
 Scaling:
