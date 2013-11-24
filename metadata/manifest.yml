@@ -48,7 +48,7 @@ Endpoints:
     Public-Port-Name:  PROXY_PORT
     Mappings:
       - Frontend:      "/splunk"
-        Backend:       "/splunk"
+        Backend:       "/"
         Options:       { websocket: true }
       - Frontend:      "/health"
         Backend:       ""
@@ -60,4 +60,4 @@ Endpoints:
     Options:           { "ssl_to_gear": true }
     Mappings:
       - Frontend:      "/splunk"
-        Backend:       "/splunk"
+        Backend:       "/"
