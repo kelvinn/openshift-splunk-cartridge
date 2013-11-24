@@ -7,6 +7,8 @@ License: "MIT"
 Vendor: kelvinn
 Cartridge-Version: 0.0.1
 Cartridge-Vendor: kelvinn
+Website: https://github.com/kelvinn/diy-extra-port-cartridge
+Source-Url: https://github.com/kelvinn/diy-extra-port-cartridge.git
 Categories:
   - service
   - web_framework
