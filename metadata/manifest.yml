@@ -61,5 +61,11 @@ Endpoints:
     Mappings:
       - Frontend:      "/services"
         Backend:       "/services"
-      - Frontend:      "/serviceNS"
-        Backend:       "/serviceNS"
+      - Frontend:      "/servicesNS"
+        Backend:       "/servicesNS"
+      - Frontend:      "/rpc"
+        Backend:       "/rpc"
+      - Frontend:      "/static"
+        Backend:       "/static"
+      
+        
