@@ -32,8 +32,9 @@ Cart-Data:
     Type: environment
     Description: "Internal IP to which the web-framework binds to."
 Group-Overrides:
-  - components:
-    - SPLUNK
+- components:
+  - web_proxy
+  - web_framework
 Subscribes:
   set-db-connection-info:
     Type: "ENV:NET_TCP:db:connection-info"
@@ -44,7 +45,7 @@ Subscribes:
 Endpoints:
   - Private-IP-Name:   IP
     Private-Port-Name: PORT
-    Private-Port:      8080
+    Private-Port:      8000
     Public-Port-Name:  PROXY_PORT
     Mappings:
       - Frontend:      ""
@@ -55,6 +56,6 @@ Endpoints:
         Options:       { health: true }
   - Private-IP-Name:   IP
     Private-Port-Name: PORT_TCP
-    Private-Port:      8090
+    Private-Port:      8089
     Public-Port-Name:  PROXY_PORT_TCP
     Options:           { "ssl_to_gear": true }
