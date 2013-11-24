@@ -59,5 +59,7 @@ Endpoints:
     Public-Port-Name:  PROXY_PORT_TCP
     Options:           { "ssl_to_gear": true }
     Mappings:
-      - Frontend:      "/api"
-        Backend:       "/api"
+      - Frontend:      "/service"
+        Backend:       "/service"
+      - Frontend:      "/serviceNS"
+        Backend:       "/serviceNS"
