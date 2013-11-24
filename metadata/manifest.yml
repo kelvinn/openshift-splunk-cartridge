@@ -34,7 +34,6 @@ Cart-Data:
 Group-Overrides:
 - components:
   - web_proxy
-  - web_framework
 Subscribes:
   set-db-connection-info:
     Type: "ENV:NET_TCP:db:connection-info"
@@ -45,7 +44,7 @@ Subscribes:
 Endpoints:
   - Private-IP-Name:   IP
     Private-Port-Name: PORT
-    Private-Port:      8000
+    Private-Port:      8080
     Public-Port-Name:  PROXY_PORT
     Mappings:
       - Frontend:      ""
