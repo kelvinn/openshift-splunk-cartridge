@@ -4,7 +4,6 @@ source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
  
 wget -O ${OPENSHIFT_TMP_DIR}/splunk-6.0-182037-Linux-x86_64.tgz 'http://www.splunk.com/page/download_track?file=6.0/splunk/linux/splunk-6.0-182037-Linux-x86_64.tgz&ac=&wget=true&name=wget&platform=Linux&architecture=x86_64&version=6.0&product=splunkd&typed=release'
-tar 
 
 tar zxf ${OPENSHIFT_TMP_DIR}/splunk-6.0-182037-Linux-x86_64.tgz -C ${OPENSHIFT_DATA_DIR}
 
