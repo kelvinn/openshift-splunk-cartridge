@@ -12,6 +12,12 @@ mkdir -p $OPENSHIFT_DIY_DIR/{logs,run}
 
 mkdir -p ${OPENSHIFT_HOMEDIR}/.splunk
 
+sed -e "s/`echo '$EMPTY_OPENSHIFT_SPLUNK_PORT'`/`echo $OPENSHIFT_SPLUNK_PORT`/" $OPENSHIFT_DATA_DIR/splunk/web.conf.template > $OPENSHIFT_DATA_DIR/app-root/data/splunk/web.conf
+sed -e "s/`echo '$EMPTY_HOSTNAME'`/`echo $HOSTNAME`/" $OPENSHIFT_DATA_DIR/splunk/inputs.conf.template > $OPENSHIFT_DATA_DIR/app-root/data/splunk/inputs.conf
+sed -e "s/`echo '$EMPTY_HOSTNAME'`/`echo $HOSTNAME`/" $OPENSHIFT_DATA_DIR/splunk/server.conf.template > $OPENSHIFT_DATA_DIR/app-root/data/splunk/server.conf
+sed -e "s/`echo '$EMPTY_HOSTNAME'`/`echo $HOSTNAME`/" $OPENSHIFT_DATA_DIR/splunk/migration.conf.template > $OPENSHIFT_DATA_DIR/app-root/data/splunk/migration.conf
+sed -e "s/`echo '$EMPTY_OPENSHIFT_SPLUNK_IP'`/`echo $OPENSHIFT_SPLUNK_IP`/" $OPENSHIFT_DATA_DIR/splunk/splunk-launch.conf.template > $OPENSHIFT_DATA_DIR/app-root/data/splunk/splunk-launch.conf
 
 
-client_result "Disclaimer: This is an experimental cartridge that provides a way to try unsupported languages, frameworks, and middleware on Openshift."
+
+client_result "Disclaimer: This is an experimental cartridge that comes provided AS IS."
