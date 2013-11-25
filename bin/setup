@@ -7,58 +7,11 @@ case "$1" in
     version="$2"
 esac
 
-# Create additional directories required by the diy cartridge
-mkdir -p $OPENSHIFT_DIY_DIR/{logs,run}
+# Create additional directories required by splunk
+mkdir -p ${OPENSHIFT_SPLUNK_DIR}/{logs,run}
 
 mkdir -p ${OPENSHIFT_HOMEDIR}/.splunk
 
-mkdir -p ${OPENSHIFT_DATA_DIR}/test
-
-# Add variables to splunk-launch.conf
-echo "SPLUNK_SERVER_NAME=splunkd" >> ${OPENSHIFT_DATA_DIR}/test/splunk-launch.conf
-echo "SPLUNK_WEB_NAME=splunkweb" >> ${OPENSHIFT_DATA_DIR}/test/splunk-launch.conf
-echo "SPLUNK_BINDIP=${OPENSHIFT_SPLUNK_IP}" >> ${OPENSHIFT_DATA_DIR}/test/splunk-launch.conf
-
-# Add variables to inputs.conf
-echo "[default]" >> ${OPENSHIFT_DATA_DIR}/test/inputs.conf
-echo "host = ${HOSTNAME}" >> ${OPENSHIFT_DATA_DIR}/test/inputs.conf
-
-# Add variables to migration.conf
-echo "[history]" >> ${OPENSHIFT_DATA_DIR}/test/migration.conf
-echo "migrated_cluster_app_to_underscore_cluster = true" >> ${OPENSHIFT_DATA_DIR}/test/migration.conf
-
-# Add variables to server.conf
-echo "[general]" >> ${OPENSHIFT_DATA_DIR}/test/server.conf
-echo "serverName = ${HOSTNAME}" >> ${OPENSHIFT_DATA_DIR}/test/server.conf
-echo "allowRemoteLogin = always" >> ${OPENSHIFT_DATA_DIR}/test/server.conf
-
-echo "[lmpool:auto_generated_pool_download-trial]" >> ${OPENSHIFT_DATA_DIR}/test/server.conf
-echo "description = auto_generated_pool_download-trial" >> ${OPENSHIFT_DATA_DIR}/test/server.conf
-echo "quota = MAX" >> ${OPENSHIFT_DATA_DIR}/test/server.conf
-echo "slaves = *" >> ${OPENSHIFT_DATA_DIR}/test/server.conf
-echo "stack_id = download-trial" >> ${OPENSHIFT_DATA_DIR}/test/server.conf
-
-echo "[lmpool:auto_generated_pool_forwarder]" >> ${OPENSHIFT_DATA_DIR}/test/server.conf
-echo "description = auto_generated_pool_forwarder" >> ${OPENSHIFT_DATA_DIR}/test/server.conf
-echo "quota = MAX" >> ${OPENSHIFT_DATA_DIR}/test/server.conf
-echo "slaves = *" >> ${OPENSHIFT_DATA_DIR}/test/server.conf
-echo "stack_id = forwarder" >> ${OPENSHIFT_DATA_DIR}/test/server.conf
-
-echo "[lmpool:auto_generated_pool_free]" >> ${OPENSHIFT_DATA_DIR}/test/server.conf
-echo "description = auto_generated_pool_free" >> ${OPENSHIFT_DATA_DIR}/test/server.conf
-echo "quota = MAX" >> ${OPENSHIFT_DATA_DIR}/test/server.conf
-echo "slaves = *" >> ${OPENSHIFT_DATA_DIR}/test/server.conf
-echo "stack_id = free" >> ${OPENSHIFT_DATA_DIR}/test/server.conf
-
-echo "[sslConfig]" >> ${OPENSHIFT_DATA_DIR}/test/server.conf
-echo "enableSplunkdSSL = false" >> ${OPENSHIFT_DATA_DIR}/test/server.conf
-
-# Add variables to web.conf
-
-echo "[settings]" >> ${OPENSHIFT_DATA_DIR}/test/web.conf
-echo "mgmtHostPort = ${OPENSHIFT_SPLUNK_PORT}" >> ${OPENSHIFT_DATA_DIR}/test/web.conf
-echo "httpport = ${OPENSHIFT_SPLUNK_PORT_MGMT}" >> ${OPENSHIFT_DATA_DIR}/test/web.conf
-echo "enableSplunkWebSSL = 0" >> ${OPENSHIFT_DATA_DIR}/test/web.conf
 
 
 

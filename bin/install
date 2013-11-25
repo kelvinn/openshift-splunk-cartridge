@@ -1,3 +1,62 @@
 #!/bin/bash -e
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
+ 
+wget -O ${OPENSHIFT_TMP_DIR}/splunk-6.0-182037-Linux-x86_64.tgz 'http://www.splunk.com/page/download_track?file=6.0/splunk/linux/splunk-6.0-182037-Linux-x86_64.tgz&ac=&wget=true&name=wget&platform=Linux&architecture=x86_64&version=6.0&product=splunkd&typed=release'
+tar 
+
+tar zxf ${OPENSHIFT_TMP_DIR}/splunk-6.0-182037-Linux-x86_64.tgz -C ${OPENSHIFT_DATA_DIR}
+
+# Now we create the variables with the correct information in them. Note that the first line creates the file.
+
+# Add variables to splunk-launch.conf
+echo "SPLUNK_SERVER_NAME=splunkd" > ${OPENSHIFT_DATA_DIR}/splunk/etc/splunk-launch.conf
+echo "SPLUNK_WEB_NAME=splunkweb" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/splunk-launch.conf
+echo "SPLUNK_BINDIP=${OPENSHIFT_SPLUNK_IP}" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/splunk-launch.conf
+
+# Add variables to inputs.conf
+echo "[default]" > ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/inputs.conf
+echo "host = ${HOSTNAME}" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/inputs.conf
+
+# Add variables to server.conf
+echo "[general]" > ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/server.conf
+echo "serverName = ${HOSTNAME}" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/server.conf
+echo "allowRemoteLogin = always" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/server.conf
+
+echo "[lmpool:auto_generated_pool_download-trial]" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/server.conf
+echo "description = auto_generated_pool_download-trial" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/server.conf
+echo "quota = MAX" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/server.conf
+echo "slaves = *" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/server.conf
+echo "stack_id = download-trial" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/server.conf
+
+echo "[lmpool:auto_generated_pool_forwarder]" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/server.conf
+echo "description = auto_generated_pool_forwarder" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/server.conf
+echo "quota = MAX" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/server.conf
+echo "slaves = *" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/server.conf
+echo "stack_id = forwarder" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/server.conf
+
+echo "[lmpool:auto_generated_pool_free]" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/server.conf
+echo "description = auto_generated_pool_free" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/server.conf
+echo "quota = MAX" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/server.conf
+echo "slaves = *" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/server.conf
+echo "stack_id = free" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/server.conf
+
+echo "[sslConfig]" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/server.conf
+echo "enableSplunkdSSL = false" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/server.conf
+
+# Add variables to web.conf
+
+echo "[settings]" > ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/web.conf
+echo "mgmtHostPort = ${OPENSHIFT_SPLUNK_IP}:${OPENSHIFT_SPLUNK_PORT_MGMT}" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/web.conf
+echo "httpport = ${OPENSHIFT_SPLUNK_PORT}" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/web.conf
+echo "enableSplunkWebSSL = 0" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/web.conf
+echo "root_endpoint = /ui" >>  ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/web.conf
+
+
+# Now we start Splunk and accept the answer
+${OPENSHIFT_DATA_DIR}/splunk/bin/splunk start --answer-yes --no-prompt --accept-license
+
+# Finally do a little cleanup
+
+rm ${OPENSHIFT_TMP_DIR}/splunk-6.0-182037-Linux-x86_64.tgz
