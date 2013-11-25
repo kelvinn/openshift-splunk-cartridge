@@ -17,6 +17,6 @@ mkdir -p ${OPENSHIFT_DATA_DIR}/test
 # Add variables to splunk-launch.conf
 echo "SPLUNK_SERVER_NAME=splunkd" >> ${OPENSHIFT_DATA_DIR}/test/splunk-launch.conf
 echo "SPLUNK_WEB_NAME=splunkweb" >> ${OPENSHIFT_DATA_DIR}/test/splunk-launch.conf
-echo "SPLUNK_BINDIP=${EMPTY_OPENSHIFT_SPLUNK_IP}" >> ${OPENSHIFT_DATA_DIR}/test/splunk-launch.conf
+echo "SPLUNK_BINDIP=${OPENSHIFT_SPLUNK_IP}" >> ${OPENSHIFT_DATA_DIR}/test/splunk-launch.conf
 
 client_result "Disclaimer: This is an experimental cartridge that comes provided AS IS."
