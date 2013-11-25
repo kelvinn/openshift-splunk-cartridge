@@ -31,6 +31,9 @@ Cart-Data:
   - Key: OPENSHIFT_SPLUNK_IP
     Type: environment
     Description: "Internal IP to which the web-framework binds to."
+  - Key: OPENSHIFT_SPLUNK_PORT_MGMT
+    Type: environment
+    Description: "Internal port to which the web-framework binds to."
 Group-Overrides:
 - components:
   - web_proxy
@@ -54,22 +57,18 @@ Endpoints:
         Backend:       ""
         Options:       { health: true }
   - Private-IP-Name:   IP
-    Private-Port-Name: PORT_TCP
+    Private-Port-Name: PORT_MGMT
     Private-Port:      8089
-    Public-Port-Name:  PROXY_PORT_TCP
+    Public-Port-Name:  PROXY_PORT_MGMT
     Options:           { "ssl_to_gear": true }
     Mappings:
       - Frontend:      "/services"
         Backend:       "/services"
-        Options:       { websocket: true }
       - Frontend:      "/servicesNS"
         Backend:       "/servicesNS"
-        Options:       { websocket: true }
       - Frontend:      "/rpc"
         Backend:       "/rpc"
-        Options:       { websocket: true }
       - Frontend:      "/static"
         Backend:       "/static"
-        Options:       { websocket: true }
       
         
