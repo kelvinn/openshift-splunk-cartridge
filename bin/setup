@@ -12,7 +12,7 @@ mkdir -p $OPENSHIFT_DIY_DIR/{logs,run}
 
 mkdir -p ${OPENSHIFT_HOMEDIR}/.splunk
 
-sed -e "s/`echo '$EMPTY_OPENSHIFT_SPLUNK_PORT'`/`echo $OPENSHIFT_HOMEDIR`/" $OPENSHIFT_DATA_DIR/splunk/web.conf.template > $OPENSHIFT_DATA_DIR/splunk/web.conf
+sed -e "s/`echo '$EMPTY_OPENSHIFT_SPLUNK_PORT'`/`echo $OPENSHIFT_SPLUNK_PORT`/" $OPENSHIFT_HOMEDIR/splunk/web.conf.template > $OPENSHIFT_DATA_DIR/splunk/web.conf
 sed -e "s/`echo '$EMPTY_HOSTNAME'`/`echo $HOSTNAME`/" $OPENSHIFT_HOMEDIR/splunk/inputs.conf.template > $OPENSHIFT_DATA_DIR/splunk/inputs.conf
 sed -e "s/`echo '$EMPTY_HOSTNAME'`/`echo $HOSTNAME`/" $OPENSHIFT_HOMEDIR/splunk/server.conf.template > $OPENSHIFT_DATA_DIR/splunk/server.conf
 sed -e "s/`echo '$EMPTY_HOSTNAME'`/`echo $HOSTNAME`/" $OPENSHIFT_HOMEDIR/splunk/migration.conf.template > $OPENSHIFT_DATA_DIR/splunk/migration.conf
