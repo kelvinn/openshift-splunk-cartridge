@@ -61,11 +61,15 @@ Endpoints:
     Mappings:
       - Frontend:      "/services"
         Backend:       "/services"
+        Options:       { websocket: true }
       - Frontend:      "/servicesNS"
         Backend:       "/servicesNS"
+        Options:       { websocket: true }
       - Frontend:      "/rpc"
         Backend:       "/rpc"
+        Options:       { websocket: true }
       - Frontend:      "/static"
         Backend:       "/static"
+        Options:       { websocket: true }
       
         
