@@ -15,7 +15,7 @@ function run_hook() {
 
 function start() {
     echo "Starting Splunk cart"
-    ${SPLUNK_BIN_DIR}/splunk start --answer-yes --no-prompt --accept-license
+    ${SPLUNK_BIN_DIR}/splunk start --answer-yes --no-prompt
     run_hook start
 }
 

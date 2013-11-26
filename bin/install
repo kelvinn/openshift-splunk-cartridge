@@ -56,6 +56,10 @@ echo "httpport = ${OPENSHIFT_SPLUNK_PORT}" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/s
 echo "enableSplunkWebSSL = 0" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/web.conf
 echo "root_endpoint = /ui" >>  ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/web.conf
 
+# We do an initial start to accept the terms
+SPLUNK_BIN_DIR=${OPENSHIFT_DATA_DIR}/splunk/bin
+${SPLUNK_BIN_DIR}/splunk start --answer-yes --no-prompt --accept-license
+
 # Finally do a little cleanup
 
 rm ${OPENSHIFT_TMP_DIR}/splunk-6.0-182037-Linux-x86_64.tgz
