@@ -1,12 +1,19 @@
 # OpenShift Splunk Cartridge
 
-The `splunk` cartridge provides a basic install of the analytic tool Splunk.
+The `splunk` cartridge provides a base install of the analytic tool Splunk.
+
+## Limitations
+There are a number of known limitations to running this Splunk cartridge on OpenShift.
+
+1. The free tier only allows 1GB of storage, so you can't use this for massive amounts of log data.
+2. OpenShift has a number of restrictions, including blocking direct access to gears. This means there is (to my knowledge) no way to push syslog data directly into Splunk. This doesn't mean you can't get log data in, you would just need to use something like FluenD, or the Syslog Universal Forwarder (untested - 26/11/2013).
+3) The Python bindings have a bug (https://github.com/splunk/splunk-sdk-python/issues/65) that is relevant to running Splunk on OpenShift. A patch is on the way, but take note if you intent to connect this way.
 
 ## Installation
 1. Create a gear with an existing cartridge.
 2. On the Application page, click on "Or, see the entire list of cartridges you can add".
 3. Under "Install your own cartridge" enter the following URL: https://raw.github.com/kelvinn/openshift-splunk-cartridge/master/metadata/manifest.yml
-4. Next and Add Cartrdige
+4. Next and Add Cartrdige. Wait a few minutes for Splunk to download and install.
 5. Logon to Splunk at: https://your-app.rhcloud.com/ui
 
 ## Cartridge Details
