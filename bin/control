@@ -15,13 +15,13 @@ function run_hook() {
 
 function start() {
     echo "Starting Splunk cart"
-    ${OPENSHIFT_BIN_DIR}/splunk start --answer-yes --no-prompt --accept-license
+    ${SPLUNK_BIN_DIR}/splunk start --answer-yes --no-prompt --accept-license
     run_hook start
 }
 
 function stop() {
     echo "Stopping Splunk cart"
-    ${OPENSHIFT_BIN_DIR}/splunk stop
+    ${SPLUNK_BIN_DIR}/splunk stop
     run_hook stop
 }
 
@@ -46,10 +46,9 @@ function reload() {
 }
 
 function tidy() {
-  client_message "Emptying log dir: $OPENSHIFT_SPLUNK_LOG_DIR"
+  client_message "No tidy tasks to run"
   shopt -s dotglob
-  # Need to confirm if the below directory even exists
-  #rm -rf $OPENSHIFT_SPLUNK_LOG_DIR/*
+
 }
 
 case "$1" in
