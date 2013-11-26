@@ -1,6 +1,6 @@
 # OpenShift Splunk Cartridge
 
-The `splunk` cartridge provides a base install of the analytic tool Splunk. This cartridge has been created to 'embed' in an existing Application.
+The `splunk` cartridge provides a base install of the analytic tool Splunk. This cartridge has been created to 'embed' in an existing Application. If you have a larger amount of data that you do not need to retain for more than a month, then I would suggest you look at Splunk Storm. If you have a small amount of data (e.g. Quantified Self data), then this cartridge may be of interest to you.
 
 ## Limitations
 There are a number of known limitations to running this Splunk cartridge on OpenShift.
