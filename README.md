@@ -1,6 +1,6 @@
 # OpenShift Splunk Cartridge
 
-The `splunk` cartridge provides a base install of the analytic tool Splunk.
+The `splunk` cartridge provides a base install of the analytic tool Splunk. This cartridge has been created to 'embed' in an existing Application.
 
 ## Limitations
 There are a number of known limitations to running this Splunk cartridge on OpenShift.
@@ -10,11 +10,12 @@ There are a number of known limitations to running this Splunk cartridge on Open
 3) The Python bindings have a bug (https://github.com/splunk/splunk-sdk-python/issues/65) that is relevant to running Splunk on OpenShift. A patch is on the way, but take note if you intent to connect this way.
 
 ## Installation
-1. Create a gear with an existing cartridge.
-2. On the Application page, click on "Or, see the entire list of cartridges you can add".
-3. Under "Install your own cartridge" enter the following URL: https://raw.github.com/kelvinn/openshift-splunk-cartridge/master/metadata/manifest.yml
-4. Next and Add Cartrdige. Wait a few minutes for Splunk to download and install.
-5. Logon to Splunk at: https://your-app.rhcloud.com/ui
+1. Create an Application based on existing web framework. If in doubt, just pick "Do-It-Yourself 0.1" or "Python 2.7"
+2. Click on "Continue to the application overview page."
+3. On the Application page, click on "Or, see the entire list of cartridges you can add".
+4. Under "Install your own cartridge" enter the following URL: https://raw.github.com/kelvinn/openshift-splunk-cartridge/master/metadata/manifest.yml
+5. Next and Add Cartrdige. Wait a few minutes for Splunk to download and install.
+6. Logon to Splunk at: https://your-app.rhcloud.com/ui
 
 ## Cartridge Details
 
