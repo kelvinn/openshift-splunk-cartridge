@@ -2,6 +2,8 @@
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
+# This location for Splunk needs to be updated if a new version is released
+# TODO Download based on current version
  
 wget -O ${OPENSHIFT_TMP_DIR}/splunk-6.0-182037-Linux-x86_64.tgz 'http://www.splunk.com/page/download_track?file=6.0/splunk/linux/splunk-6.0-182037-Linux-x86_64.tgz&ac=&wget=true&name=wget&platform=Linux&architecture=x86_64&version=6.0&product=splunkd&typed=release'
 
@@ -15,10 +17,12 @@ echo "SPLUNK_WEB_NAME=splunkweb" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/splunk-laun
 echo "SPLUNK_BINDIP=${OPENSHIFT_SPLUNK_IP}" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/splunk-launch.conf
 
 # Add variables to inputs.conf
+
 echo "[default]" > ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/inputs.conf
 echo "host = ${HOSTNAME}" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/inputs.conf
 
 # Add variables to server.conf
+
 echo "[general]" > ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/server.conf
 echo "serverName = ${HOSTNAME}" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/server.conf
 echo "allowRemoteLogin = always" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/server.conf
@@ -51,10 +55,6 @@ echo "mgmtHostPort = ${OPENSHIFT_SPLUNK_IP}:${OPENSHIFT_SPLUNK_PORT_MGMT}" >> ${
 echo "httpport = ${OPENSHIFT_SPLUNK_PORT}" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/web.conf
 echo "enableSplunkWebSSL = 0" >> ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/web.conf
 echo "root_endpoint = /ui" >>  ${OPENSHIFT_DATA_DIR}/splunk/etc/system/local/web.conf
-
-
-# Now we start Splunk and accept the answer
-${OPENSHIFT_DATA_DIR}/splunk/bin/splunk start --answer-yes --no-prompt --accept-license
 
 # Finally do a little cleanup
 

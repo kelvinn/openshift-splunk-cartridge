@@ -10,12 +10,7 @@ esac
 # Create additional directories required by splunk
 mkdir -p ${OPENSHIFT_SPLUNK_DIR}/{logs,run}
 
+# This needs to be created to allow splunk config to be changed
 mkdir -p ${OPENSHIFT_HOMEDIR}/.splunk
 
-
-
-
-
-
-
-client_result "Disclaimer: This is an experimental cartridge that comes provided AS IS."
+client_result "Disclaimer: Cartridge provided AS IS. Please logon to Splunk at https://${OPENSHIFT_GEAR_DNS}/ui"

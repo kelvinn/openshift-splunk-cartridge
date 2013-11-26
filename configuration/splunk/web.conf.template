@@ -1,4 +1,0 @@
-[settings]
-mgmtHostPort = $EMPTY_OPENSHIFT_SPLUNK_PORT
-httpport = $EMPTY_OPENSHIFT_SPLUNK_PORT_MGMT
-enableSplunkWebSSL = 0

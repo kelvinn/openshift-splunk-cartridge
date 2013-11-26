@@ -12,23 +12,25 @@ function run_hook() {
 }
 
 function start() {
-    echo "Starting DIY cart"
+    echo "Starting Splunk cart"
+    ${OPENSHIFT_DATA_DIR}/splunk/bin/splunk start --answer-yes --no-prompt --accept-license
     run_hook start
 }
 
 function stop() {
-    echo "Stopping DIY cart"
+    echo "Stopping Splunk cart"
+    ${OPENSHIFT_DATA_DIR}/splunk/bin/splunk stop
     run_hook stop
 }
 
 function restart() {
-    echo "Restarting DIY cart"
+    echo "Restarting Splunk cart"
     stop
     start
 }
 
 function status() {
-   if output=$(curl http://$OPENSHIFT_DIY_IP:$OPENSHIFT_DIY_PORT 2>&1 )
+   if output=$(curl http://$OPENSHIFT_SPLUNK_IP:$OPENSHIFT_SPLUNK_PORT/ui 2>&1 )
    then
       client_result "Application is running"
    else
@@ -37,14 +39,15 @@ function status() {
 }
 
 function reload() {
-    client_result "Reloading DIY cart"
+    client_result "Reloading Splunk cart"
     restart
 }
 
 function tidy() {
-  client_message "Emptying log dir: $OPENSHIFT_DIY_LOG_DIR"
+  client_message "Emptying log dir: $OPENSHIFT_SPLUNK_LOG_DIR"
   shopt -s dotglob
-  rm -rf $OPENSHIFT_DIY_LOG_DIR/*
+  # Need to confirm if the below directory even exists
+  #rm -rf $OPENSHIFT_SPLUNK_LOG_DIR/*
 }
 
 case "$1" in
